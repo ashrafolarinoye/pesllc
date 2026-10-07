@@ -1,0 +1,20 @@
+{
+  "name": "pro-edge-sports",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Modern redesign of the Pro-Edge Sports homepage — African basketball scouting & prospect intelligence.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}
