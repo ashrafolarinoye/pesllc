@@ -1,12 +1,22 @@
 import { useEffect, useState } from 'react'
 import { brand, navLinks, socials } from '../data/site'
 import { useScrolled, useScrollProgress } from '../hooks/useReveal'
-import { SearchIcon, MenuIcon, CloseIcon, ArrowRight, SocialIcon } from './Icons'
+import { useTheme } from '../hooks/useTheme'
+import {
+  SearchIcon,
+  MenuIcon,
+  CloseIcon,
+  ArrowRight,
+  SocialIcon,
+  SunIcon,
+  MoonIcon,
+} from './Icons'
 import BrandMark from './BrandMark'
 
 export default function Nav() {
   const scrolled = useScrolled(30)
   const progress = useScrollProgress()
+  const [theme, toggleTheme] = useTheme()
   const [open, setOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
 
@@ -45,6 +55,17 @@ export default function Nav() {
           </nav>
 
           <div className="nav__actions">
+            <button
+              type="button"
+              className="icon-btn theme-toggle"
+              onClick={toggleTheme}
+              aria-pressed={theme === 'dark'}
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+            </button>
+
             <button
               type="button"
               className="icon-btn"

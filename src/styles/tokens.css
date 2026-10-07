@@ -1,5 +1,77 @@
+/**
+ * Design tokens.
+ *
+ * The page is light by default; `[data-theme='dark']` on <html> swaps the whole
+ * palette in one go. Every surface, line and overlay is a variable so both
+ * themes stay in sync — never hard-code a colour further down the cascade.
+ *
+ * To rebrand, change the accent block (--lime-*) in each theme and nothing else.
+ */
+
 :root {
-  /* Surfaces — near-black editorial palette */
+  /* ---------------------------------------------------- LIGHT (default) -- */
+  --ink-950: #f1f3f6; /* deepest surface: footer, ticker, mobile panel */
+  --ink-900: #ffffff; /* page */
+  --ink-850: #f6f7f9; /* cards */
+  --ink-800: #eceef2; /* media wells */
+  --ink-750: #e6e9ee;
+  --ink-700: #dde1e7;
+  --ink-600: #c3c9d2;
+
+  --line: rgba(11, 13, 17, 0.1);
+  --line-strong: rgba(11, 13, 17, 0.2);
+
+  --text: #0b0d11;
+  --text-dim: #3d4550;
+  --muted: #5b636e;
+  --faint: #6b7381;
+
+  /* accent — lime */
+  --lime-rgb: 76, 122, 0;
+  --lime: rgb(var(--lime-rgb)); /* accent text + icons */
+  --lime-fill: #9ad61a; /* buttons, tiles, badges */
+  --lime-fill-2: #7fb800; /* gradient partner */
+  --lime-fill-hover: #8ac216;
+  --lime-on-fill: #0a0c06; /* text sitting on a lime fill */
+  --lime-soft: rgba(var(--lime-rgb), 0.1);
+  --lime-line: rgba(var(--lime-rgb), 0.3);
+  --lime-glow: rgba(var(--lime-rgb), 0.32);
+  --lime-on-media: #c8ff3d; /* accent text over dark photo scrims (both themes) */
+  --glow-lime: rgba(var(--lime-rgb), 0.14);
+  --glow-amber: rgba(226, 86, 28, 0.12);
+
+  --amber: #e2561c;
+  --amber-soft: rgba(226, 86, 28, 0.12);
+
+  /* chrome + overlays */
+  --glass: rgba(255, 255, 255, 0.82);
+  --glass-solid: rgba(255, 255, 255, 0.96);
+  --scrim: rgba(7, 8, 10, 0.72); /* behind badges on photos (dark in both) */
+  --scrim-strong: rgba(7, 8, 10, 0.88);
+  --decor: rgba(11, 13, 17, 0.16); /* numeral + dot tracks */
+  --decor-strong: rgba(11, 13, 17, 0.34);
+  --grid-line: rgba(11, 13, 17, 0.05);
+  --court-line: rgba(11, 13, 17, 0.07);
+  --watermark-line: rgba(11, 13, 17, 0.09);
+  --ghost-bg: rgba(11, 13, 17, 0.03);
+  --ghost-bg-hover: rgba(11, 13, 17, 0.07);
+  --input-bg: #ffffff;
+  --qr-bg: #ffffff;
+  --qr-text: #0b0d11;
+  --qr-hint: #6b7381;
+  --fallback-text: rgba(11, 13, 17, 0.3);
+  --logo-filter: brightness(0); /* darken the uploaded mark on light */
+  --blend-strong: rgba(255, 255, 255, 0); /* media → card fade */
+  --blend-soft: rgba(255, 255, 255, 0);
+
+  --shadow-card: 0 18px 44px -24px rgba(11, 13, 17, 0.26);
+  --shadow-lift: 0 34px 70px -34px rgba(11, 13, 17, 0.32);
+
+  --color-scheme: light;
+}
+
+[data-theme='dark'] {
+  /* ------------------------------------------------------------- DARK -- */
   --ink-950: #050608;
   --ink-900: #07080a;
   --ink-850: #0b0d11;
@@ -16,36 +88,68 @@
   --muted: #8b95a3;
   --faint: #5d6673;
 
-  /* Accents */
-  --lime: #c8ff3d;
-  --lime-dim: #9ed12a;
-  --amber: #ff6b2c;
-  --blue: #5b8cff;
+  --lime-rgb: 200, 255, 61;
+  --lime: rgb(var(--lime-rgb));
+  --lime-fill: #c8ff3d;
+  --lime-fill-2: #a9e022;
+  --lime-fill-hover: #d5ff63;
+  --lime-on-fill: #0a0c06;
+  --lime-soft: rgba(var(--lime-rgb), 0.12);
+  --lime-line: rgba(var(--lime-rgb), 0.3);
+  --lime-glow: rgba(var(--lime-rgb), 0.6);
+  --lime-on-media: #c8ff3d;
+  --glow-lime: rgba(var(--lime-rgb), 0.22);
+  --glow-amber: rgba(255, 107, 44, 0.2);
 
-  --lime-soft: rgba(200, 255, 61, 0.12);
+  --amber: #ff6b2c;
   --amber-soft: rgba(255, 107, 44, 0.14);
 
-  /* Type */
+  --glass: rgba(6, 7, 9, 0.82);
+  --glass-solid: rgba(6, 7, 9, 0.95);
+  --scrim: rgba(7, 8, 10, 0.72);
+  --scrim-strong: rgba(7, 8, 10, 0.88);
+  --decor: rgba(255, 255, 255, 0.16);
+  --decor-strong: rgba(255, 255, 255, 0.34);
+  --grid-line: rgba(255, 255, 255, 0.028);
+  --court-line: rgba(255, 255, 255, 0.055);
+  --watermark-line: rgba(255, 255, 255, 0.06);
+  --ghost-bg: rgba(255, 255, 255, 0.03);
+  --ghost-bg-hover: rgba(255, 255, 255, 0.08);
+  --input-bg: rgba(0, 0, 0, 0.35);
+  --qr-bg: rgba(255, 255, 255, 0.96);
+  --qr-text: #07080a;
+  --qr-hint: #5d6673;
+  --fallback-text: rgba(255, 255, 255, 0.32);
+  --logo-filter: brightness(0) invert(1);
+  --blend-strong: rgba(11, 13, 17, 0.92);
+  --blend-soft: rgba(7, 8, 10, 0.82);
+
+  --shadow-card: 0 24px 60px -28px rgba(0, 0, 0, 0.9);
+  --shadow-lift: 0 40px 90px -40px rgba(0, 0, 0, 0.95);
+
+  --color-scheme: dark;
+}
+
+:root {
+  color-scheme: var(--color-scheme);
+}
+
+/* --------------------------------------------------------- shared bits -- */
+:root {
   --font-display: 'Anton', 'Arial Narrow', 'Helvetica Neue', Impact, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
     sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  /* Layout */
   --container: 1280px;
   --gutter: 24px;
   --nav-h: 72px;
 
-  /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
-  /* Radii */
   --r-sm: 8px;
   --r-md: 14px;
   --r-lg: 20px;
   --r-xl: 28px;
-
-  --shadow-card: 0 24px 60px -28px rgba(0, 0, 0, 0.9);
-  --shadow-lift: 0 40px 90px -40px rgba(0, 0, 0, 0.95);
 }

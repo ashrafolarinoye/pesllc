@@ -63,6 +63,19 @@ export const DownloadIcon = (p) => (
   </svg>
 )
 
+export const SunIcon = (p) => (
+  <svg {...base} {...p}>
+    <circle cx="12" cy="12" r="4.2" />
+    <path d="M12 2.6v2.2M12 19.2v2.2M4.2 12H2M22 12h-2.2M6.5 6.5 5 5M19 19l-1.5-1.5M17.5 6.5 19 5M5 19l1.5-1.5" />
+  </svg>
+)
+
+export const MoonIcon = (p) => (
+  <svg {...base} {...p}>
+    <path d="M20 14.5A8.2 8.2 0 0 1 9.6 4a8.5 8.5 0 1 0 10.4 10.5z" />
+  </svg>
+)
+
 export const ChevronLeft = (p) => (
   <svg {...base} {...p}>
     <path d="M14.5 5 8 12l6.5 7" />

@@ -1,10 +1,8 @@
 import { useReveal } from './hooks/useReveal'
 import Nav from './components/Nav'
 import Ticker from './components/Ticker'
-import Hero from './components/Hero'
-import Stories from './components/Stories'
+import FeaturedSlider from './components/FeaturedSlider'
 import Insights from './components/Insights'
-import NewsSlider from './components/NewsSlider'
 import ProspectBoard from './components/ProspectBoard'
 import Testimonial from './components/Testimonial'
 import Pricing from './components/Pricing'
@@ -25,10 +23,8 @@ export default function App() {
       <Nav />
 
       <main id="main">
-        <Hero />
-        <Stories />
+        <FeaturedSlider />
         <Insights />
-        <NewsSlider />
         <ProspectBoard />
         <Testimonial />
         <Pricing />

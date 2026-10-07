@@ -1,25 +1,40 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { newsSlides } from '../data/site'
-import SectionHead from './SectionHead'
+import { brand, featuredSlides, heroStats } from '../data/site'
 import Img from './Img'
-import { ChevronLeft, ChevronRight, ArrowRight } from './Icons'
+import { ChevronLeft, ChevronRight, ArrowRight, ArrowUpRight, CheckIcon } from './Icons'
 
 const DURATION = 620 // slide transition, ms
 const AUTOPLAY = 6000 // ms per slide
 const SWIPE = 48 // px before a drag counts as a swipe
 
-export default function NewsSlider() {
-  const n = newsSlides.length
+/** Decorative half-court linework behind the headline. */
+function CourtLines() {
+  return (
+    <svg className="featured__court" viewBox="0 0 900 900" aria-hidden="true" focusable="false">
+      <g fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M60 120h780v660H60z" />
+        <path d="M60 450h780" />
+        <circle cx="450" cy="450" r="110" />
+        <path d="M340 450a110 110 0 0 0 220 0" />
+        <path d="M60 240h190v420H60zM840 240H650v420h190z" />
+        <path d="M250 330a170 170 0 0 1 0 240M650 330a170 170 0 0 0 0 240" />
+      </g>
+    </svg>
+  )
+}
+
+export default function FeaturedSlider() {
+  const n = featuredSlides.length
 
   /**
    * Track holds [clone-of-last, ...slides, clone-of-first] so next/prev can loop
-   * seamlessly. `pos` is the index into that track; the real slide index is
-   * derived from it and wraps back after landing on a clone.
+   * seamlessly. `pos` indexes into that track; the real slide index wraps back
+   * after landing on a clone.
    */
   const [pos, setPos] = useState(1)
   const [animate, setAnimate] = useState(true)
   const [paused, setPaused] = useState(false)
-  const [inView, setInView] = useState(false)
+  const [inView, setInView] = useState(true)
 
   const rootRef = useRef(null)
   const drag = useRef(null)
@@ -60,7 +75,7 @@ export default function NewsSlider() {
     return () => clearTimeout(t)
   }, [animate])
 
-  // Autoplay — only while visible, not paused, and never under reduced motion.
+  // Autoplay — only while visible, not paused, never under reduced motion.
   useEffect(() => {
     if (reduceMotion || paused || !inView) return
     const id = setInterval(() => go(1), AUTOPLAY)
@@ -74,7 +89,7 @@ export default function NewsSlider() {
       return
     }
     const io = new IntersectionObserver(([e]) => setInView(e.isIntersecting), {
-      threshold: 0.3,
+      threshold: 0.25,
     })
     io.observe(el)
     return () => io.disconnect()
@@ -104,17 +119,59 @@ export default function NewsSlider() {
     }
   }
 
-  const ordered = [newsSlides[n - 1], ...newsSlides, newsSlides[0]]
+  const ordered = [featuredSlides[n - 1], ...featuredSlides, featuredSlides[0]]
 
   return (
-    <section className="section section--news" id="news">
+    <section className="section section--featured" id="top">
+      <div className="featured__bg" aria-hidden="true">
+        <div className="featured__glow featured__glow--lime" />
+        <div className="featured__glow featured__glow--amber" />
+        <CourtLines />
+        <span className="featured__watermark">{brand.short}</span>
+      </div>
+
       <div className="container">
-        <SectionHead
-          eyebrow="PES desk"
-          title="Latest news from the desk"
-          description="New profiles hitting the board and the reports behind them — swipe, drag or use the arrows."
-          action={{ label: 'All insights', href: 'https://pro-edgesports.com/category/insights/' }}
-        />
+        <div className="featured__head">
+          <div className="featured__head-main">
+            <p className="eyebrow">
+              <span className="eyebrow__dot" />
+              African basketball scouting &amp; prospect intelligence
+            </p>
+            <h1 className="featured__title">
+              The clearest read on
+              <span className="featured__title-accent"> Africa&rsquo;s next generation </span>
+              of basketball talent.
+            </h1>
+          </div>
+
+          <div className="featured__head-aside">
+            <p className="featured__lede">
+              Verified measurables, film-backed evaluations and development tracking on African
+              and African-heritage prospects &mdash; from academies in Lagos to draft night in the
+              NBA.
+            </p>
+            <div className="featured__cta">
+              <a className="btn btn--primary" href="https://pro-edgesports.com/category/database/">
+                Explore the database
+                <ArrowRight width="18" height="18" />
+              </a>
+              <a className="btn btn--ghost" href="https://calendly.com/proedgesportss/15min">
+                Book a consultation
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="featured__label reveal" data-reveal>
+          <p className="eyebrow">Featured posts</p>
+          <a
+            className="link-arrow"
+            href="https://pro-edgesports.com/category/insights/"
+          >
+            All insights
+            <ArrowUpRight width="17" height="17" />
+          </a>
+        </div>
 
         <div
           className="slider"
@@ -128,7 +185,7 @@ export default function NewsSlider() {
             className="slider__viewport"
             role="group"
             aria-roledescription="carousel"
-            aria-label="Latest news from the PES desk"
+            aria-label="Featured posts"
             tabIndex={0}
             onKeyDown={onKeyDown}
             onPointerDown={onPointerDown}
@@ -146,36 +203,33 @@ export default function NewsSlider() {
             >
               {ordered.map((s, i) => {
                 const isCurrent = i === pos
+                const label = ((((i - 1) % n) + n) % n) + 1
                 return (
                   <article
                     className="slide"
                     key={`${i}-${s.id}`}
                     role="group"
                     aria-roledescription="slide"
-                    aria-label={`${(((i - 1) % n) + n) % n + 1} of ${n}`}
+                    aria-label={`${label} of ${n}`}
                     aria-hidden={!isCurrent}
                   >
-                    <a
-                      className="slide__media"
-                      href={s.href}
-                      tabIndex={isCurrent ? 0 : -1}
-                    >
+                    <a className="slide__media" href={s.href} tabIndex={isCurrent ? 0 : -1}>
                       <Img src={s.image} alt="" label={s.title} />
                       <span className="slide__badge">
-                        {s.kind === 'profile' ? 'New profile' : 'Report'}
+                        {s.kind === 'profile' ? 'New profile' : 'Featured'}
                       </span>
                       <span className="slide__num" aria-hidden="true">
-                        {String((((i - 1) % n) + n) % n + 1).padStart(2, '0')}
+                        {String(label).padStart(2, '0')}
                       </span>
                     </a>
 
                     <div className="slide__body">
                       <span className="chip">{s.kicker}</span>
-                      <h3 className="slide__title">
+                      <h2 className="slide__title">
                         <a href={s.href} tabIndex={isCurrent ? 0 : -1}>
                           {s.title}
                         </a>
-                      </h3>
+                      </h2>
                       <p className="slide__excerpt">{s.excerpt}</p>
 
                       <div className="meta">
@@ -220,7 +274,7 @@ export default function NewsSlider() {
             </div>
 
             <div className="slider__dots">
-              {newsSlides.map((s, i) => (
+              {featuredSlides.map((s, i) => (
                 <button
                   type="button"
                   key={s.id}
@@ -248,6 +302,18 @@ export default function NewsSlider() {
             </p>
           </div>
         </div>
+
+        <dl className="featured__stats reveal" data-reveal>
+          {heroStats.map((s) => (
+            <div className="featured__stat" key={s.label}>
+              <dt className="featured__stat-value">{s.value}</dt>
+              <dd className="featured__stat-label">
+                <CheckIcon width="14" height="14" />
+                {s.label}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   )

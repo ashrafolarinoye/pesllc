@@ -77,6 +77,8 @@ export const topStories = [
     id: 'championship-game',
     category: 'Featured',
     title: 'Championship Game & Complete Tournament Breakdown',
+    excerpt:
+      'Every game worth a second look — the full tournament breakdown, and the prospects whose stock moved most across the bracket.',
     author: 'Godwin Owinje',
     time: '2 months ago',
     image: `${UPLOADS}/2026/08/IMG-20260818-WA0021-420x280.jpg`,
@@ -86,6 +88,8 @@ export const topStories = [
     id: 'afrobasket-semis',
     category: 'Featured',
     title: 'Top Performances at the 2026 FIBA Afro-Basketball Semi Finals.',
+    excerpt:
+      'The semi-final stage separated the prospects from the performers — here is who answered, and what it means for their boards.',
     author: 'Godwin Owinje',
     time: '9 months ago',
     image: `${UPLOADS}/2026/01/FIBA-AfroBasket-Semis-399x280.jpeg`,
@@ -129,17 +133,17 @@ export const insights = [
 ]
 
 /**
- * News slider — the newest things on the desk: freshly added profiles plus the
- * latest reports. `kind` drives the slide badge and CTA wording.
+ * Featured slider — the top-of-page carousel. Featured reports first, then the
+ * newest profiles hitting the board. `kind` drives the slide badge and CTA.
  */
-export const newsSlides = [
+const newProfiles = [
   {
     id: 'adriel-nyorha',
     kind: 'profile',
-    kicker: 'New to the database',
+    kicker: 'New profile',
     title: 'Adriel Nyorha added to the PES college board',
     excerpt:
-      'The 6’5″ sophomore guard out of Pacific University joins the board with a Nigeria / Canada profile and a verified class-year record.',
+      'The 6\u20195\u2033 sophomore guard out of Pacific University joins the board with a Nigeria / Canada profile and a verified class-year record.',
     author: 'Godwin Owinje',
     time: '1 week ago',
     image: `${UPLOADS}/2026/09/ADRIEL-NYORHA.png`,
@@ -149,10 +153,10 @@ export const newsSlides = [
   {
     id: 'vincent-osazee',
     kind: 'profile',
-    kicker: 'New to the database',
-    title: 'Vincent Osazee: 6’8″ forward tracking upward at Pacific',
+    kicker: 'New profile',
+    title: 'Vincent Osazee: 6\u20198\u2033 forward tracking upward at Pacific',
     excerpt:
-      'A freshman frontcourt piece with Nigeria / Ireland eligibility — length, mobility and a frame still filling out.',
+      'A freshman frontcourt piece with Nigeria / Ireland eligibility \u2014 length, mobility and a frame still filling out.',
     author: 'Godwin Owinje',
     time: '1 week ago',
     image: `${UPLOADS}/2026/09/DeqtUxEJ_400x400-e1790540557626.jpg`,
@@ -162,55 +166,32 @@ export const newsSlides = [
   {
     id: 'thomas-ndong',
     kind: 'profile',
-    kicker: 'New to the database',
-    title: 'Thomas Ndong files into the senior class at Saint Mary’s',
+    kicker: 'New profile',
+    title: 'Thomas Ndong files into the senior class at Saint Mary\u2019s',
     excerpt:
-      '6’10″ and 245 lb with Nigeria / Canada ties — one of the more physically ready interior prospects on the new-entry list.',
+      '6\u201910\u2033 and 245 lb with Nigeria / Canada ties \u2014 one of the more physically ready interior prospects on the new-entry list.',
     author: 'Godwin Owinje',
     time: '1 week ago',
     image: `${UPLOADS}/2026/09/684c5c4de5ffc6cd0c755ca8_NDONG-e1790540972209-768x766.jpg`,
     href: `${SITE}/database/thomas-ndong-2/`,
     cta: 'View profile',
   },
-  {
-    id: 'news-bwb',
+]
+
+export const featuredSlides = [
+  ...topStories.map((s) => ({
+    id: s.id,
     kind: 'report',
-    kicker: 'Report',
-    title: '2026 BWB Next Up: Top African Performance, Istanbul',
-    excerpt:
-      'The African standouts who separated themselves in Istanbul — measurables, motor and where their games travel next.',
-    author: 'Godwin Owinje',
-    time: '1 month ago',
-    image: `${UPLOADS}/2026/08/BWB-Next-Up-Turkey-373x280.jpg`,
-    href: `${SITE}/database/2026-fiba-u18-afrobasket-quarterfinals-knockout-stage-recap-r-presence-on-both-ends-of-the-floor/`,
+    kicker: 'Featured',
+    title: s.title,
+    excerpt: s.excerpt,
+    author: s.author,
+    time: s.time,
+    image: s.image,
+    href: s.href,
     cta: 'Read report',
-  },
-  {
-    id: 'news-championship',
-    kind: 'report',
-    kicker: 'Report',
-    title: 'Championship Game & Complete Tournament Breakdown',
-    excerpt:
-      'Every game, every performance worth a second look — the full tournament breakdown from the Pro-Edge desk.',
-    author: 'Godwin Owinje',
-    time: '2 months ago',
-    image: `${UPLOADS}/2026/08/IMG-20260818-WA0021-420x280.jpg`,
-    href: `${SITE}/database/championship-game-complete-tournament-breakdown/`,
-    cta: 'Read report',
-  },
-  {
-    id: 'news-eybl',
-    kind: 'report',
-    kicker: 'Report',
-    title: '2026 NIKE EYBL: Top 20 African Performance',
-    excerpt:
-      'Built from the 2026 Nike EYBL regular season and Peach Jam, with verified family backgrounds and African heritage.',
-    author: 'Godwin Owinje',
-    time: '2 months ago',
-    image: `${UPLOADS}/2026/01/2026-EYBL-1-1-615x410.png`,
-    href: `${SITE}/database/baye-ndongo-was-one-of-the-key-contributors-for-the-georgia-tech-yellow-jackets-despite-the-teams-8367-loss/`,
-    cta: 'Read report',
-  },
+  })),
+  ...newProfiles,
 ]
 
 const qr = (url) =>

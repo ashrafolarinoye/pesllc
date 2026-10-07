@@ -70,8 +70,8 @@ h4 {
 }
 
 ::selection {
-  background: var(--lime);
-  color: var(--ink-900);
+  background: var(--lime-fill);
+  color: var(--lime-on-fill);
 }
 
 :focus-visible {
@@ -122,8 +122,8 @@ h4 {
   left: 50%;
   translate: -50% -160%;
   z-index: 200;
-  background: var(--lime);
-  color: var(--ink-900);
+  background: var(--lime-fill);
+  color: var(--lime-on-fill);
   font-weight: 700;
   padding: 10px 18px;
   border-radius: 99px;
@@ -192,23 +192,23 @@ h4 {
 }
 
 .btn--primary {
-  --btn-bg: var(--lime);
-  --btn-fg: #0a0c06;
-  --btn-bd: var(--lime);
-  box-shadow: 0 10px 30px -12px rgba(200, 255, 61, 0.6);
+  --btn-bg: var(--lime-fill);
+  --btn-fg: var(--lime-on-fill);
+  --btn-bd: var(--lime-fill);
+  box-shadow: 0 10px 30px -12px var(--lime-glow);
 }
 .btn--primary:hover {
-  --btn-bg: #d5ff63;
-  --btn-bd: #d5ff63;
-  box-shadow: 0 16px 40px -14px rgba(200, 255, 61, 0.75);
+  --btn-bg: var(--lime-fill-hover);
+  --btn-bd: var(--lime-fill-hover);
+  box-shadow: 0 16px 40px -14px var(--lime-glow);
 }
 
 .btn--ghost {
-  --btn-bg: rgba(255, 255, 255, 0.03);
+  --btn-bg: var(--ghost-bg);
 }
 .btn--ghost:hover {
-  --btn-bg: rgba(255, 255, 255, 0.08);
-  --btn-bd: rgba(255, 255, 255, 0.3);
+  --btn-bg: var(--ghost-bg-hover);
+  --btn-bd: var(--line-strong);
 }
 
 .btn--sm {
@@ -229,14 +229,14 @@ h4 {
   border-radius: 99px;
   border: 1px solid var(--line);
   color: var(--text-dim);
-  background: rgba(255, 255, 255, 0.02);
+  background: var(--ghost-bg);
   transition: color 0.2s var(--ease), background-color 0.2s var(--ease),
     border-color 0.2s var(--ease);
 }
 .icon-btn:hover {
   color: var(--lime);
   background: var(--lime-soft);
-  border-color: rgba(200, 255, 61, 0.35);
+  border-color: rgba(var(--lime-rgb), 0.35);
 }
 .icon-btn--sm {
   width: 34px;
@@ -259,7 +259,7 @@ h4 {
 }
 .link-arrow:hover {
   color: var(--lime);
-  border-color: rgba(200, 255, 61, 0.4);
+  border-color: rgba(var(--lime-rgb), 0.4);
 }
 .link-arrow:hover svg {
   translate: 4px 0;
@@ -277,7 +277,7 @@ h4 {
   padding: 4px 10px;
   border-radius: 99px;
   background: var(--lime-soft);
-  border: 1px solid rgba(200, 255, 61, 0.22);
+  border: 1px solid rgba(var(--lime-rgb), 0.22);
 }
 
 .badge {
@@ -293,14 +293,6 @@ h4 {
   padding: 7px 12px;
   border-radius: 99px;
   backdrop-filter: blur(10px);
-}
-
-.badge--live {
-  top: 16px;
-  left: 16px;
-  background: rgba(7, 8, 10, 0.72);
-  color: var(--lime);
-  border: 1px solid rgba(200, 255, 61, 0.3);
 }
 
 .badge__pulse {

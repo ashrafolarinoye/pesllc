@@ -13,7 +13,25 @@
       name="description"
       content="Pro-Edge Sports is an independent scouting and prospect-intelligence service covering African and African-heritage basketball talent — from academies and high schools to the NBA Draft."
     />
-    <meta name="theme-color" content="#07080A" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!--
+      Set the theme before first paint so there's no flash of the wrong mode.
+      The site is white by default; dark is opt-in via the toggle and then
+      remembered. (To follow the OS instead, see useTheme.js.)
+    -->
+    <script>
+      ;(function () {
+        try {
+          var theme = localStorage.getItem('pes-theme') === 'dark' ? 'dark' : 'light'
+          var root = document.documentElement
+          root.setAttribute('data-theme', theme)
+          root.style.colorScheme = theme
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light')
+        }
+      })()
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -24,9 +24,8 @@ npm run preview  # serve the built bundle
 | Section | What it does |
 | --- | --- |
 | **Ticker** | Marquee of the latest `JUST IN` report PDFs; pauses on hover |
-| **Sticky nav** | Transparent → blurred glass on scroll, expanding search, full-screen mobile menu, read-progress hairline |
-| **Hero** | Big display type over a half-court line pattern, dual CTAs, key-figure strip |
-| **Top story** | One lead card + two secondary rows |
+| **Sticky nav** | Transparent → blurred glass on scroll, **light/dark toggle**, expanding search, full-screen mobile menu, read-progress hairline |
+| **Featured slider** | Top-of-page carousel: three featured reports plus three brand-new profiles. Drag/swipe, arrow keys, arrows, dots with a live progress fill; loops seamlessly both ways, pauses on hover/focus, only advances while on screen |
 | **Insights** | Three latest scouting reports |
 | **News slider** | Autoplaying carousel of the newest desk output — drag/swipe, arrow keys, arrows, dots with a live progress fill. Loops seamlessly in both directions, pauses on hover/focus, and only advances while on screen |
 | **Prospect board** | Tabbed Draft / College board; cards carry measurables and reveal a scannable prospect-ID QR on hover or keyboard focus |
@@ -73,17 +72,38 @@ mark: 'logo',   // 'monogram' (default) | 'logo'
 The tile is also the automatic fallback if that PNG ever fails to load, so the header can never
 render empty.
 
+## Themes
+
+The page is **white by default** with a **dark mode toggle** in the nav (sun/moon). The choice
+persists in `localStorage` under `pes-theme`; dark is opt-in and remembered.
+
+- An inline script in `index.html` sets `data-theme` on `<html>` **before first paint**, so there
+  is no flash of the wrong theme.
+- `src/hooks/useTheme.js` owns the runtime toggle and keeps `<meta name="theme-color">` in sync.
+- To default to the visitor's OS setting instead, add a `prefers-color-scheme` branch to that
+  inline script (noted in the file).
+
+Every colour is a CSS variable — nothing is hard-coded below `tokens.css`, so both themes stay in
+sync automatically. The accent is split into three roles so it stays legible on both:
+
+| Token | Role |
+| --- | --- |
+| `--lime` | accent **text**/icons on a page surface (olive on white, lime on black) |
+| `--lime-fill` | accent **fills** — buttons, tiles, badges (always paired with near-black text) |
+| `--lime-on-media` | accent text over dark photo scrims — bright in both themes |
+
 ## Design system
 
-| Token | Value | Use |
+| Token | Light | Dark |
 | --- | --- | --- |
-| `--ink-900` | `#07080a` | page background |
-| `--ink-850` | `#0b0d11` | card surfaces |
-| `--lime` | `#c8ff3d` | primary accent, CTAs, data labels |
-| `--amber` | `#ff6b2c` | "live" pulse, secondary glow |
-| `--font-display` | Anton | headlines, prices, prospect names |
-| `--font-body` | Inter | copy |
-| `--font-mono` | JetBrains Mono | eyebrows, measurables, meta |
+| `--ink-900` | `#ffffff` page | `#07080a` page |
+| `--ink-850` | `#f6f7f9` cards | `#0b0d11` cards |
+| `--lime` | `#4c7a00` | `#c8ff3d` |
+| `--lime-fill` | `#9ad61a` | `#c8ff3d` |
+| `--amber` | `#e2561c` | `#ff6b2c` |
+| `--font-display` | Anton — headlines, prices, prospect names |
+| `--font-body` | Inter — copy |
+| `--font-mono` | JetBrains Mono — eyebrows, measurables, meta |
 
 Anton / Inter / JetBrains Mono load from Google Fonts, with system fallbacks baked into the
 stack so the layout holds up offline.
