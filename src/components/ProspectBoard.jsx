@@ -12,7 +12,7 @@ export default function ProspectBoard() {
     <section className="section section--prospects" id="prospects">
       <div className="container">
         <SectionHead
-          eyebrow="The board"
+          eyebrow="PES board"
           title="Prospects on the Pro-Edge radar"
           description="Every profile carries verified measurables, a school and country record, and its own scannable prospect ID."
           action={{ label: 'Open database', href: 'https://pro-edgesports.com/category/database/' }}

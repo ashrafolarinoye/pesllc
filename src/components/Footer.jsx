@@ -1,31 +1,20 @@
-import { useState } from 'react'
 import { brand, footerColumns, navLinks, socials } from '../data/site'
 import { ArrowUp, SocialIcon } from './Icons'
+import BrandMark from './BrandMark'
 
 export default function Footer() {
-  const [logoOk, setLogoOk] = useState(true)
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer__top">
           <div className="footer__brand">
             <a className="brand" href="/" aria-label={`${brand.name} — home`}>
-              {logoOk ? (
-                <img
-      className="brand__logo"
-      src={brand.logo}
-      alt=""
-      referrerPolicy="no-referrer"
-      onError={() => setLogoOk(false)}
-    />
-              ) : (
-                <span className="brand__fallback">
-                  {brand.wordmark[0]}
-                  <em>{brand.wordmark[1]}</em>
-                </span>
-              )}
+              <BrandMark />
             </a>
             <p className="footer__blurb">{brand.blurb}</p>
+            <span className="footer__watermark" aria-hidden="true">
+              {brand.short}
+            </span>
             <div className="footer__social">
               {socials.map((s) => (
                 <a key={s.label} href={s.href} aria-label={s.label} className="icon-btn icon-btn--sm">
@@ -63,7 +52,11 @@ export default function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <p>&copy; {new Date().getFullYear()} {brand.name}. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} {brand.name}. All rights reserved.
+            <span className="footer__dot" aria-hidden="true" />
+            {brand.short}
+          </p>
           <nav className="footer__mini" aria-label="Footer secondary">
             {navLinks.map((l) => (
               <a key={l.label} href={l.href}>

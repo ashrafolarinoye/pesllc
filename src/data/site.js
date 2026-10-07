@@ -12,8 +12,15 @@ const SITE = 'https://pro-edgesports.com'
 
 export const brand = {
   name: 'Pro-Edge Sports',
-  wordmark: ['PRO', 'EDGE'],
+  short: 'PES',
+  wordmark: ['PRO-EDGE', 'SPORTS'],
   logo: `${UPLOADS}/2022/12/1000018525-removebg-preview-e1759889736415.png`,
+  /**
+   * Which mark the nav and footer render:
+   *   'monogram' → the crisp PES tile lockup (default)
+   *   'logo'     → the uploaded PNG, with the PES tile as an automatic fallback
+   */
+  mark: 'monogram',
   blurb:
     'Independent scouting and prospect intelligence on African and African-heritage basketball talent — from academies and high schools to college rosters and the NBA Draft.',
 }
@@ -63,7 +70,7 @@ export const topStories = [
       'The full breakdown of the African standouts who separated themselves at Basketball Without Borders Next Up in Istanbul — measurables, motor and where their games travel next.',
     author: 'Godwin Owinje',
     time: '1 month ago',
-    image: `${UPLOADS}/2026/01/Top-Performance--615x410.webp`,
+    image: `${UPLOADS}/2026/08/BWB-Next-Up-Turkey-373x280.jpg`,
     href: `${SITE}/database/2026-fiba-u18-afrobasket-quarterfinals-knockout-stage-recap-r-presence-on-both-ends-of-the-floor/`,
   },
   {
@@ -72,7 +79,7 @@ export const topStories = [
     title: 'Championship Game & Complete Tournament Breakdown',
     author: 'Godwin Owinje',
     time: '2 months ago',
-    image: `${UPLOADS}/2026/01/ak-o-e1767568375538.webp`,
+    image: `${UPLOADS}/2026/08/IMG-20260818-WA0021-420x280.jpg`,
     href: `${SITE}/database/championship-game-complete-tournament-breakdown/`,
   },
   {
@@ -81,7 +88,7 @@ export const topStories = [
     title: 'Top Performances at the 2026 FIBA Afro-Basketball Semi Finals.',
     author: 'Godwin Owinje',
     time: '9 months ago',
-    image: `${UPLOADS}/2025/11/US-COLLEGE-PLAYERS-A-Z.pdf-image-425-e1763877726153.jpg`,
+    image: `${UPLOADS}/2026/01/FIBA-AfroBasket-Semis-399x280.jpeg`,
     href: `${SITE}/database/in-gonzagas-89-77-win-over-santa-clara-graduate-forward-graham-ike-delivered-one-of-the-most-dominant-performances-of-his-college-career-finishing-with-34-points-and-11-rebounds-to-lead-the/`,
   },
 ]
@@ -118,6 +125,91 @@ export const insights = [
     time: '4 months ago',
     image: `${UPLOADS}/2026/01/gettyimages-2266104569-615x410.webp`,
     href: `${SITE}/database/in-a-big-12-road-game-at-baylor-byu-freshman-aj-dybantsa-had-himself-a-dominant-offensive-performance-that-was-n-the-pirates-home-game-versus-utsa-on-february-11-east-carolina-secured-an-88-72-victory/`,
+  },
+]
+
+/**
+ * News slider — the newest things on the desk: freshly added profiles plus the
+ * latest reports. `kind` drives the slide badge and CTA wording.
+ */
+export const newsSlides = [
+  {
+    id: 'adriel-nyorha',
+    kind: 'profile',
+    kicker: 'New to the database',
+    title: 'Adriel Nyorha added to the PES college board',
+    excerpt:
+      'The 6’5″ sophomore guard out of Pacific University joins the board with a Nigeria / Canada profile and a verified class-year record.',
+    author: 'Godwin Owinje',
+    time: '1 week ago',
+    image: `${UPLOADS}/2026/09/ADRIEL-NYORHA.png`,
+    href: `${SITE}/database/adriel-nyorha/`,
+    cta: 'View profile',
+  },
+  {
+    id: 'vincent-osazee',
+    kind: 'profile',
+    kicker: 'New to the database',
+    title: 'Vincent Osazee: 6’8″ forward tracking upward at Pacific',
+    excerpt:
+      'A freshman frontcourt piece with Nigeria / Ireland eligibility — length, mobility and a frame still filling out.',
+    author: 'Godwin Owinje',
+    time: '1 week ago',
+    image: `${UPLOADS}/2026/09/DeqtUxEJ_400x400-e1790540557626.jpg`,
+    href: `${SITE}/database/vincent-osazee/`,
+    cta: 'View profile',
+  },
+  {
+    id: 'thomas-ndong',
+    kind: 'profile',
+    kicker: 'New to the database',
+    title: 'Thomas Ndong files into the senior class at Saint Mary’s',
+    excerpt:
+      '6’10″ and 245 lb with Nigeria / Canada ties — one of the more physically ready interior prospects on the new-entry list.',
+    author: 'Godwin Owinje',
+    time: '1 week ago',
+    image: `${UPLOADS}/2026/09/684c5c4de5ffc6cd0c755ca8_NDONG-e1790540972209-768x766.jpg`,
+    href: `${SITE}/database/thomas-ndong-2/`,
+    cta: 'View profile',
+  },
+  {
+    id: 'news-bwb',
+    kind: 'report',
+    kicker: 'Report',
+    title: '2026 BWB Next Up: Top African Performance, Istanbul',
+    excerpt:
+      'The African standouts who separated themselves in Istanbul — measurables, motor and where their games travel next.',
+    author: 'Godwin Owinje',
+    time: '1 month ago',
+    image: `${UPLOADS}/2026/08/BWB-Next-Up-Turkey-373x280.jpg`,
+    href: `${SITE}/database/2026-fiba-u18-afrobasket-quarterfinals-knockout-stage-recap-r-presence-on-both-ends-of-the-floor/`,
+    cta: 'Read report',
+  },
+  {
+    id: 'news-championship',
+    kind: 'report',
+    kicker: 'Report',
+    title: 'Championship Game & Complete Tournament Breakdown',
+    excerpt:
+      'Every game, every performance worth a second look — the full tournament breakdown from the Pro-Edge desk.',
+    author: 'Godwin Owinje',
+    time: '2 months ago',
+    image: `${UPLOADS}/2026/08/IMG-20260818-WA0021-420x280.jpg`,
+    href: `${SITE}/database/championship-game-complete-tournament-breakdown/`,
+    cta: 'Read report',
+  },
+  {
+    id: 'news-eybl',
+    kind: 'report',
+    kicker: 'Report',
+    title: '2026 NIKE EYBL: Top 20 African Performance',
+    excerpt:
+      'Built from the 2026 Nike EYBL regular season and Peach Jam, with verified family backgrounds and African heritage.',
+    author: 'Godwin Owinje',
+    time: '2 months ago',
+    image: `${UPLOADS}/2026/01/2026-EYBL-1-1-615x410.png`,
+    href: `${SITE}/database/baye-ndongo-was-one-of-the-key-contributors-for-the-georgia-tech-yellow-jackets-despite-the-teams-8367-loss/`,
+    cta: 'Read report',
   },
 ]
 

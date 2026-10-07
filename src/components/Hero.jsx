@@ -1,4 +1,4 @@
-import { heroStats } from '../data/site'
+import { brand, heroStats } from '../data/site'
 import { ArrowRight, CheckIcon } from './Icons'
 
 /** Decorative half-court linework behind the hero copy. */
@@ -24,6 +24,9 @@ export default function Hero() {
         <div className="hero__glow hero__glow--lime" />
         <div className="hero__glow hero__glow--amber" />
         <CourtLines />
+        <span className="hero__watermark" aria-hidden="true">
+          {brand.short}
+        </span>
       </div>
 
       <div className="container hero__inner">

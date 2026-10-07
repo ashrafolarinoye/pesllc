@@ -1,8 +1,8 @@
-# Pro-Edge Sports — homepage redesign
+# PES — Pro-Edge Sports homepage redesign
 
 A modern, from-scratch redesign of the [Pro-Edge Sports](https://pro-edgesports.com/) homepage —
 an independent scouting and prospect-intelligence service covering African and
-African-heritage basketball talent.
+African-heritage basketball talent — built around the **PES** monogram.
 
 Built as a React + Vite single page. The original WordPress/Foxiz homepage was a dense
 stack of widgets; this redesign keeps **every piece of real content** (top stories, insights,
@@ -28,6 +28,7 @@ npm run preview  # serve the built bundle
 | **Hero** | Big display type over a half-court line pattern, dual CTAs, key-figure strip |
 | **Top story** | One lead card + two secondary rows |
 | **Insights** | Three latest scouting reports |
+| **News slider** | Autoplaying carousel of the newest desk output — drag/swipe, arrow keys, arrows, dots with a live progress fill. Loops seamlessly in both directions, pauses on hover/focus, and only advances while on screen |
 | **Prospect board** | Tabbed Draft / College board; cards carry measurables and reveal a scannable prospect-ID QR on hover or keyboard focus |
 | **Testimonial** | Featured quote from Coach Leonard Hamilton |
 | **Pricing** | Segmented control switching Database Access ↔ Consulting Services; all five real plans |
@@ -47,13 +48,30 @@ src/
   hooks/useReveal.js    scroll-reveal, sticky-nav and read-progress hooks
   components/
     Nav.jsx  Ticker.jsx  Hero.jsx  Stories.jsx  Insights.jsx
-    ProspectBoard.jsx  Testimonial.jsx  Pricing.jsx  Headlines.jsx
-    CTA.jsx  Footer.jsx  SectionHead.jsx  Img.jsx  Icons.jsx
+    NewsSlider.jsx  ProspectBoard.jsx  Testimonial.jsx  Pricing.jsx
+    Headlines.jsx  CTA.jsx  Footer.jsx  SectionHead.jsx
+    BrandMark.jsx  Img.jsx  Icons.jsx
   styles/
     tokens.css          design tokens (colour, type, spacing, motion)
     base.css            reset, typography, buttons, chips, utilities
     sections.css        section-level styles + responsive rules
 ```
+
+## PES branding
+
+The **PES** monogram tile is the primary mark, rendered by `components/BrandMark.jsx` as a
+lockup: lime tile + `PRO-EDGE / SPORTS` wordmark. It appears in the nav, the footer, and as an
+oversized outlined watermark in both the hero and the footer. The favicon is an inline SVG using
+the same tile.
+
+To switch back to the uploaded raster logo instead, change one line in `src/data/site.js`:
+
+```js
+mark: 'logo',   // 'monogram' (default) | 'logo'
+```
+
+The tile is also the automatic fallback if that PNG ever fails to load, so the header can never
+render empty.
 
 ## Design system
 

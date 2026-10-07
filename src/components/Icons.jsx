@@ -63,6 +63,18 @@ export const DownloadIcon = (p) => (
   </svg>
 )
 
+export const ChevronLeft = (p) => (
+  <svg {...base} {...p}>
+    <path d="M14.5 5 8 12l6.5 7" />
+  </svg>
+)
+
+export const ChevronRight = (p) => (
+  <svg {...base} {...p}>
+    <path d="M9.5 5 16 12l-6.5 7" />
+  </svg>
+)
+
 export const BoltIcon = (p) => (
   <svg {...base} width="16" height="16" {...p}>
     <path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13z" />

@@ -4,6 +4,7 @@ import Ticker from './components/Ticker'
 import Hero from './components/Hero'
 import Stories from './components/Stories'
 import Insights from './components/Insights'
+import NewsSlider from './components/NewsSlider'
 import ProspectBoard from './components/ProspectBoard'
 import Testimonial from './components/Testimonial'
 import Pricing from './components/Pricing'
@@ -27,6 +28,7 @@ export default function App() {
         <Hero />
         <Stories />
         <Insights />
+        <NewsSlider />
         <ProspectBoard />
         <Testimonial />
         <Pricing />

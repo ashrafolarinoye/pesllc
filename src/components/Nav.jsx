@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react'
 import { brand, navLinks, socials } from '../data/site'
 import { useScrolled, useScrollProgress } from '../hooks/useReveal'
 import { SearchIcon, MenuIcon, CloseIcon, ArrowRight, SocialIcon } from './Icons'
+import BrandMark from './BrandMark'
 
 export default function Nav() {
   const scrolled = useScrolled(30)
   const progress = useScrollProgress()
   const [open, setOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
-  const [logoOk, setLogoOk] = useState(true)
 
   // Lock body scroll while the mobile panel is open.
   useEffect(() => {
@@ -28,27 +28,12 @@ export default function Nav() {
     return () => window.removeEventListener('keydown', onKey)
   }, [])
 
-  const brandMark = logoOk ? (
-    <img
-      className="brand__logo"
-      src={brand.logo}
-      alt=""
-      referrerPolicy="no-referrer"
-      onError={() => setLogoOk(false)}
-    />
-  ) : (
-    <span className="brand__fallback">
-      {brand.wordmark[0]}
-      <em>{brand.wordmark[1]}</em>
-    </span>
-  )
-
   return (
     <>
       <header className={`nav${scrolled ? ' is-stuck' : ''}`}>
         <div className="nav__inner container">
           <a className="brand" href="/" aria-label={`${brand.name} — home`}>
-            {brandMark}
+            <BrandMark />
           </a>
 
           <nav className="nav__links" aria-label="Primary">

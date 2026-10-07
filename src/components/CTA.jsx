@@ -18,7 +18,7 @@ export default function CTA() {
           <div className="cta__copy">
             <p className="eyebrow">
               <BoltIcon />
-              The Pro-Edge brief
+              The PES Brief
             </p>
             <h2 className="cta__title">
               Get the week&rsquo;s African prospect movement <em>before</em> it travels.
